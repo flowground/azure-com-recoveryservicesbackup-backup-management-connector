@@ -1,0 +1,111 @@
+{
+    "type": "object",
+    "properties": {
+        "vaultName": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "ARM Resource.",
+                    "properties": {
+                        "eTag": {
+                            "description": "Optional ETag.",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource Id represents the complete path to the resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name associated with the resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/...",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "Backup resource vault config details.",
+            "properties": {
+                "properties": {
+                    "description": "BackupResourceVaultConfigResource properties",
+                    "properties": {
+                        "enhancedSecurityState": {
+                            "description": "Enabled or Disabled.",
+                            "enum": [
+                                "Invalid",
+                                "Enabled",
+                                "Disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "EnhancedSecurityState"
+                            }
+                        },
+                        "storageType": {
+                            "description": "Storage type.",
+                            "enum": [
+                                "Invalid",
+                                "GeoRedundant",
+                                "LocallyRedundant"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "StorageType"
+                            }
+                        },
+                        "storageTypeState": {
+                            "description": "Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked.",
+                            "enum": [
+                                "Invalid",
+                                "Locked",
+                                "Unlocked"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "StorageTypeState"
+                            }
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

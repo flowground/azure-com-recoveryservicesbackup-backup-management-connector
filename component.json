@@ -1,0 +1,695 @@
+{
+    "title": "RecoveryServicesBackupClient",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-backupManagement/2016-12-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "BackupEngines_List": {
+            "main": "./lib/actions/BackupEngines_List.js",
+            "title": "Backup management servers registered to Recovery Services Vault. Returns a pageable list of servers.",
+            "description": "Backup management servers registered to Recovery Services Vault. Returns a pageable list of servers.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupEngines_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupEngines_Get": {
+            "main": "./lib/actions/BackupEngines_Get.js",
+            "title": "Returns backup management server registered to Recovery Services Vault.",
+            "description": "Returns backup management server registered to Recovery Services Vault.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupEngines_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionContainerRefreshOperationResults_Get": {
+            "main": "./lib/actions/ProtectionContainerRefreshOperationResults_Get.js",
+            "title": "Provides the result of the refresh operation triggered by the BeginRefresh operation.",
+            "description": "Provides the result of the refresh operation triggered by the BeginRefresh operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionContainerRefreshOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionContainers_Get": {
+            "main": "./lib/actions/ProtectionContainers_Get.js",
+            "title": "Gets details of the specific container registered to your Recovery Services Vault.",
+            "description": "Gets details of the specific container registered to your Recovery Services Vault.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionContainers_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionContainerOperationResults_Get": {
+            "main": "./lib/actions/ProtectionContainerOperationResults_Get.js",
+            "title": "Fetches the result of any operation on the container.",
+            "description": "Fetches the result of any operation on the container.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionContainerOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectedItems_Delete": {
+            "main": "./lib/actions/ProtectedItems_Delete.js",
+            "title": "Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of the request, call the GetItemOperationResult API.",
+            "description": "Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of the request, call the GetItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectedItems_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectedItems_Get": {
+            "main": "./lib/actions/ProtectedItems_Get.js",
+            "title": "Provides the details of the backed up item. This is an asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.",
+            "description": "Provides the details of the backed up item. This is an asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectedItems_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectedItems_CreateOrUpdate": {
+            "main": "./lib/actions/ProtectedItems_CreateOrUpdate.js",
+            "title": "Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.",
+            "description": "Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectedItems_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Backups_Trigger": {
+            "main": "./lib/actions/Backups_Trigger.js",
+            "title": "Triggers backup for specified backed up item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API.",
+            "description": "Triggers backup for specified backed up item. This is an asynchronous operation. To know the status of the operation, call GetProtectedItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Backups_Trigger.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectedItemOperationResults_Get": {
+            "main": "./lib/actions/ProtectedItemOperationResults_Get.js",
+            "title": "Fetches the result of any operation on the backup item.",
+            "description": "Fetches the result of any operation on the backup item.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectedItemOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectedItemOperationStatuses_Get": {
+            "main": "./lib/actions/ProtectedItemOperationStatuses_Get.js",
+            "title": "Fetches the status of an operation such as triggering a backup, restore. The status can be in progress, completed or failed. You can refer to the OperationStatus enum for all the possible states of the operation. Some operations create jobs. This method returns the list of jobs associated with the operation.",
+            "description": "Fetches the status of an operation such as triggering a backup, restore. The status can be in progress, completed or failed. You can refer to the OperationStatus enum for all the possible states of the operation. Some operations create jobs. This method returns the list of jobs associated with the operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectedItemOperationStatuses_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RecoveryPoints_List": {
+            "main": "./lib/actions/RecoveryPoints_List.js",
+            "title": "Lists the backup copies for the backed up item.",
+            "description": "Lists the backup copies for the backed up item.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RecoveryPoints_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RecoveryPoints_Get": {
+            "main": "./lib/actions/RecoveryPoints_Get.js",
+            "title": "Provides the information of the backed up data identified using RecoveryPointID. This is an asynchronous operation. To know the status of the operation, call the GetProtectedItemOperationResult API.",
+            "description": "Provides the information of the backed up data identified using RecoveryPointID. This is an asynchronous operation. To know the status of the operation, call the GetProtectedItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RecoveryPoints_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ItemLevelRecoveryConnections_Provision": {
+            "main": "./lib/actions/ItemLevelRecoveryConnections_Provision.js",
+            "title": "Provisions a script which invokes an iSCSI connection to the backup data. Executing this script opens a file explorer displaying all the recoverable files and folders. This is an asynchronous operation. To know the status of provisioning, call GetProtectedItemOperationResult API.",
+            "description": "Provisions a script which invokes an iSCSI connection to the backup data. Executing this script opens a file explorer displaying all the recoverable files and folders. This is an asynchronous operation. To know the status of provisioning, call GetProtectedItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ItemLevelRecoveryConnections_Provision.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Restores_Trigger": {
+            "main": "./lib/actions/Restores_Trigger.js",
+            "title": "Restores the specified backed up data. This is an asynchronous operation. To know the status of this API call, use GetProtectedItemOperationResult API.",
+            "description": "Restores the specified backed up data. This is an asynchronous operation. To know the status of this API call, use GetProtectedItemOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Restores_Trigger.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ItemLevelRecoveryConnections_Revoke": {
+            "main": "./lib/actions/ItemLevelRecoveryConnections_Revoke.js",
+            "title": "Revokes an iSCSI connection which can be used to download a script. Executing this script opens a file explorer displaying all recoverable files and folders. This is an asynchronous operation.",
+            "description": "Revokes an iSCSI connection which can be used to download a script. Executing this script opens a file explorer displaying all recoverable files and folders. This is an asynchronous operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ItemLevelRecoveryConnections_Revoke.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionContainers_Refresh": {
+            "main": "./lib/actions/ProtectionContainers_Refresh.js",
+            "title": "Discovers all the containers in the subscription that can be backed up to Recovery Services Vault. This is an asynchronous operation. To know the status of the operation, call GetRefreshOperationResult API.",
+            "description": "Discovers all the containers in the subscription that can be backed up to Recovery Services Vault. This is an asynchronous operation. To know the status of the operation, call GetRefreshOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionContainers_Refresh.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ExportJobsOperationResults_Get": {
+            "main": "./lib/actions/ExportJobsOperationResults_Get.js",
+            "title": "Gets the operation result of operation triggered by Export Jobs API. If the operation is successful, then it also contains URL of a Blob and a SAS key to access the same. The blob contains exported jobs in JSON serialized format.",
+            "description": "Gets the operation result of operation triggered by Export Jobs API. If the operation is successful, then it also contains URL of a Blob and a SAS key to access the same. The blob contains exported jobs in JSON serialized format.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ExportJobsOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobCancellations_Trigger": {
+            "main": "./lib/actions/JobCancellations_Trigger.js",
+            "title": "Cancels a job. This is an asynchronous operation. To know the status of the cancellation, call GetCancelOperationResult API.",
+            "description": "Cancels a job. This is an asynchronous operation. To know the status of the cancellation, call GetCancelOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobCancellations_Trigger.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobOperationResults_Get": {
+            "main": "./lib/actions/JobOperationResults_Get.js",
+            "title": "Fetches the result of any operation.\r\n            the operation.",
+            "description": "Fetches the result of any operation.\r\n            the operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_Export": {
+            "main": "./lib/actions/Jobs_Export.js",
+            "title": "Triggers export of jobs specified by filters and returns an OperationID to track.",
+            "description": "Triggers export of jobs specified by filters and returns an OperationID to track.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_Export.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupOperationResults_Get": {
+            "main": "./lib/actions/BackupOperationResults_Get.js",
+            "title": "Provides the status of the delete operations such as deleting backed up item. Once the operation has started, the status code in the response would be Accepted. It will continue to be in this state till it reaches completion. On successful completion, the status code will be OK. This method expects OperationID as an argument. OperationID is part of the Location header of the operation response.",
+            "description": "Provides the status of the delete operations such as deleting backed up item. Once the operation has started, the status code in the response would be Accepted. It will continue to be in this state till it reaches completion. On successful completion, the status code will be OK. This method expects OperationID as an argument. OperationID is part of the Location header of the operation response.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupOperationStatuses_Get": {
+            "main": "./lib/actions/BackupOperationStatuses_Get.js",
+            "title": "Fetches the status of an operation such as triggering a backup, restore. The status can be in progress, completed or failed. You can refer to the OperationStatus enum for all the possible states of an operation. Some operations create jobs. This method returns the list of jobs when the operation is complete.",
+            "description": "Fetches the status of an operation such as triggering a backup, restore. The status can be in progress, completed or failed. You can refer to the OperationStatus enum for all the possible states of an operation. Some operations create jobs. This method returns the list of jobs when the operation is complete.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupOperationStatuses_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupPolicies_List": {
+            "main": "./lib/actions/BackupPolicies_List.js",
+            "title": "Lists of backup policies associated with Recovery Services Vault. API provides pagination parameters to fetch scoped results.",
+            "description": "Lists of backup policies associated with Recovery Services Vault. API provides pagination parameters to fetch scoped results.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupPolicies_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionPolicies_Delete": {
+            "main": "./lib/actions/ProtectionPolicies_Delete.js",
+            "title": "Deletes specified backup policy from your Recovery Services Vault. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "description": "Deletes specified backup policy from your Recovery Services Vault. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionPolicies_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionPolicies_Get": {
+            "main": "./lib/actions/ProtectionPolicies_Get.js",
+            "title": "Provides the details of the backup policies associated to Recovery Services Vault. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "description": "Provides the details of the backup policies associated to Recovery Services Vault. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionPolicies_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionPolicies_CreateOrUpdate": {
+            "main": "./lib/actions/ProtectionPolicies_CreateOrUpdate.js",
+            "title": "Creates or modifies a backup policy. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "description": "Creates or modifies a backup policy. This is an asynchronous operation. Status of the operation can be fetched using GetPolicyOperationResult API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionPolicies_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionPolicyOperationResults_Get": {
+            "main": "./lib/actions/ProtectionPolicyOperationResults_Get.js",
+            "title": "Provides the result of an operation.",
+            "description": "Provides the result of an operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionPolicyOperationResults_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProtectionPolicyOperationStatuses_Get": {
+            "main": "./lib/actions/ProtectionPolicyOperationStatuses_Get.js",
+            "title": "Provides the status of the asynchronous operations like backup, restore. The status can be in progress, completed or failed. You can refer to the Operation Status enum for all the possible states of an operation. Some operations create jobs. This method returns the list of jobs associated with operation.",
+            "description": "Provides the status of the asynchronous operations like backup, restore. The status can be in progress, completed or failed. You can refer to the Operation Status enum for all the possible states of an operation. Some operations create jobs. This method returns the list of jobs associated with operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProtectionPolicyOperationStatuses_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupProtectableItems_List": {
+            "main": "./lib/actions/BackupProtectableItems_List.js",
+            "title": "Provides a pageable list of protectable objects within your subscription according to the query filter and the pagination parameters.",
+            "description": "Provides a pageable list of protectable objects within your subscription according to the query filter and the pagination parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupProtectableItems_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupProtectedItems_List": {
+            "main": "./lib/actions/BackupProtectedItems_List.js",
+            "title": "Provides a pageable list of all items that are backed up within a vault.",
+            "description": "Provides a pageable list of all items that are backed up within a vault.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupProtectedItems_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupProtectionContainers_List": {
+            "main": "./lib/actions/BackupProtectionContainers_List.js",
+            "title": "Lists the containers registered to Recovery Services Vault.",
+            "description": "Lists the containers registered to Recovery Services Vault.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupProtectionContainers_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SecurityPINs_Get": {
+            "main": "./lib/actions/SecurityPINs_Get.js",
+            "title": "Get the security PIN.",
+            "description": "Get the security PIN.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SecurityPINs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupUsageSummaries_List": {
+            "main": "./lib/actions/BackupUsageSummaries_List.js",
+            "title": "Fetches the backup management usage summaries of the vault.",
+            "description": "Fetches the backup management usage summaries of the vault.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupUsageSummaries_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupResourceVaultConfigs_Get": {
+            "main": "./lib/actions/BackupResourceVaultConfigs_Get.js",
+            "title": "Fetches resource vault config.",
+            "description": "Fetches resource vault config.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupResourceVaultConfigs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupResourceVaultConfigs_Update": {
+            "main": "./lib/actions/BackupResourceVaultConfigs_Update.js",
+            "title": "Updates vault security config.",
+            "description": "Updates vault security config.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupResourceVaultConfigs_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupResourceStorageConfigs_Get": {
+            "main": "./lib/actions/BackupResourceStorageConfigs_Get.js",
+            "title": "Fetches resource storage config.",
+            "description": "Fetches resource storage config.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupResourceStorageConfigs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BackupResourceStorageConfigs_Update": {
+            "main": "./lib/actions/BackupResourceStorageConfigs_Update.js",
+            "title": "Updates vault storage model type.",
+            "description": "Updates vault storage model type.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BackupResourceStorageConfigs_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

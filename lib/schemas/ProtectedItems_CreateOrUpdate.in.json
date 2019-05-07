@@ -1,0 +1,145 @@
+{
+    "type": "object",
+    "properties": {
+        "vaultName": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "fabricName": {
+            "required": true,
+            "type": "string"
+        },
+        "containerName": {
+            "required": true,
+            "type": "string"
+        },
+        "protectedItemName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "ARM Resource.",
+                    "properties": {
+                        "eTag": {
+                            "description": "Optional ETag.",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource Id represents the complete path to the resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name associated with the resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/...",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "Base class for backup items.",
+            "properties": {
+                "properties": {
+                    "description": "ProtectedItemResource properties",
+                    "discriminator": {
+                        "propertyName": "protectedItemType"
+                    },
+                    "properties": {
+                        "backupManagementType": {
+                            "description": "Type of backup managemenent for the backed up item.",
+                            "enum": [
+                                "Invalid",
+                                "AzureIaasVM",
+                                "MAB",
+                                "DPM",
+                                "AzureBackupServer",
+                                "AzureSql"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "BackupManagementType"
+                            }
+                        },
+                        "containerName": {
+                            "description": "Unique name of container",
+                            "type": "string"
+                        },
+                        "lastRecoveryPoint": {
+                            "description": "Timestamp when the last (latest) backup copy was created for this backup item.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "policyId": {
+                            "description": "ID of the backup policy with which this item is backed up.",
+                            "type": "string"
+                        },
+                        "protectedItemType": {
+                            "description": "backup item type.",
+                            "type": "string"
+                        },
+                        "sourceResourceId": {
+                            "description": "ARM ID of the resource to be backed up.",
+                            "type": "string"
+                        },
+                        "workloadType": {
+                            "description": "Type of workload this item represents.",
+                            "enum": [
+                                "Invalid",
+                                "VM",
+                                "FileFolder",
+                                "AzureSqlDb",
+                                "SQLDB",
+                                "Exchange",
+                                "Sharepoint",
+                                "VMwareVM",
+                                "SystemState",
+                                "Client",
+                                "GenericDataSource"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "DataSourceType"
+                            }
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
